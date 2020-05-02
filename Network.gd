@@ -33,8 +33,8 @@ func _connected_to_server():
 	var local_player_id = get_tree().get_network_unique_id()
 	players[local_player_id] = self_data
 	rpc('_send_player_info', local_player_id, self_data)
-	#print(get_node("/root/World/CamBase").name)
-	get_node("/root/World/CamBase").team = 1
+	#change the team of the newly joined player from 0 to the length of players
+	get_node("/root/World/CamBase").team = len(players)
 
 func _on_player_disconnected(id):
 	players.erase(id)

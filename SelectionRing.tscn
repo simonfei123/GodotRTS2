@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="CylinderMesh" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.305882, 0.94902, 0.192157, 1 )
+
+[node name="SelectionRing" type="MeshInstance"]
+transform = Transform( 1.4197, 0, 0, 0, 0.119909, 0, 0, 0, 1.4197, 0, 0.260365, 0 )
+visible = false
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
