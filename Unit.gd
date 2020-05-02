@@ -18,6 +18,14 @@ func _ready():
 func move_to(target_pos):
 	path = nav.get_simple_path(global_transform.origin, target_pos)
 	path_ind = 0
+	rpc("set_pos", target_pos)
+
+
+
+remote func set_pos(pos):
+	path = nav.get_simple_path(global_transform.origin, pos)
+	path_ind = 0
+	
 
 func _physics_process(delta):
 	if path_ind < path.size():
@@ -26,6 +34,7 @@ func _physics_process(delta):
 			path_ind += 1
 		else:
 			move_and_slide(move_vec.normalized() * move_speed, Vector3(0, 1, 0))
+			look_at(path[0],Vector3(0,1,0))
 
 func select():
 	$SelectionRing.show()

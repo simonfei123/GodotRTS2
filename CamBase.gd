@@ -30,13 +30,13 @@ func _process(delta):
 func calc_move(m_pos, delta):
 	var v_size = get_viewport().size
 	var move_vec = Vector3()
-	if m_pos.x < MOVE_MARGIN:
+	if m_pos.x < MOVE_MARGIN && m_pos.x > 0: #the added second part prevents the mouse from moving the viewport outside the window
 		move_vec.x -= 1
-	if m_pos.y < MOVE_MARGIN:
+	if m_pos.y < MOVE_MARGIN && m_pos.y > 0:
 		move_vec.z -= 1
-	if m_pos.x > v_size.x - MOVE_MARGIN:
+	if m_pos.x > v_size.x - MOVE_MARGIN && m_pos.x < v_size.x:
 		move_vec.x += 1
-	if m_pos.y > v_size.y - MOVE_MARGIN:
+	if m_pos.y > v_size.y - MOVE_MARGIN && m_pos.y < v_size.y:
 		move_vec.z += 1
 	move_vec = move_vec.rotated(Vector3(0, 1, 0), rotation_degrees.y)
 	global_translate(move_vec * delta * MOVE_SPEED)
